@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from .models import Candidate
+from .models import Candidate, Poll, Choice
+
+import datetime
 
 # Create your views here.
 def index(request):
@@ -14,4 +16,19 @@ def index(request):
     return render(request, 'elections/index.html', context)
 
 def areas(request, area):
-    return HttpResponse(area)
+    # 현재 시간
+    today = datetime.datetime.now()
+
+    # 현재 진행 중인 Poll을 확인
+    try:
+        # get에 인자로 조건을 전달
+        poll = Poll.objects.get(area = area, start_date__lte = today, end_date__gte = today)
+        # Candidate의 area(앞)와 매개변수 area(뒤)가 같은 객체만 불러오기
+        candidates = Candidate.objects.filter(area = area)
+    except:
+        poll = None
+        candidates = None
+        
+    context = {'candidates': candidates, 'area': area, 'poll': poll}
+
+    return render(request, 'elections/area.html', context)
