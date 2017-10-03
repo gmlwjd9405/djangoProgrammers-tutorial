@@ -21,18 +21,14 @@
         </tr>
         </thead>
         <tbody>
+        {% for candidate in candidates %}
         <tr>
-            <td>가후보</td>
-            <td>후보입니다.</td>
-            <td>우리나라</td>
-            <td>기호1번</td>
+            <td> {{ candidate.name }} </td>
+            <td> {{ candidate.introduction }} </td>
+            <td> {{ candidate.area }} </td>
+            <td>기호 {{ candidate.party_number }} 번</td>
         </tr>
-        <tr>
-            <td>나후보</td>
-            <td>후보입니다.</td>
-            <td>우리나라</td>
-            <td>기호2번</td>햐
-        </tr>
+        {% endfor %}
         <tbody>
     </table>
 </body>
