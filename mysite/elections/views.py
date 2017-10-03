@@ -13,3 +13,5 @@ def index(request):
     # context로 html에 모든 후보에 대한 정보를 전달
     return render(request, 'elections/index.html', context)
 
+def areas(request, area):
+    return HttpResponse(area)
