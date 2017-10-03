@@ -82,7 +82,7 @@ DATABASES = {
 }
 DATABASE_OPTIONS = {'charset': 'utf8'} #추가
 TIME_ZONE = 'Asia/Seoul' #추가
-LANGUAGE_CODE = 'ko-kr' #추가햣
+LANGUAGE_CODE = 'ko-kr' #추가
 
 
 # Password validation
