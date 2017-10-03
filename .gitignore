@@ -1,0 +1,12 @@
+# Ignore Pycharm
+.idea/
+
+# Distribution / Packaging
+env/
+.envo
+
+# Django stuff:
+*.log
+
+# .DS_Store
+*.DS_Store
