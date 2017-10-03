@@ -3,7 +3,7 @@
 
 # Distribution / Packaging
 env/
-.envo
+.env
 
 # Django stuff:
 *.log
