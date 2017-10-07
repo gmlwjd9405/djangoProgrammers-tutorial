@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '9s62ca888@&pzwvi^v7ivl((rgccup^$fecn2p1*2!i8bv^fra'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost']
 
 
 # Application definition
@@ -55,8 +55,8 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+        'DIRS': ['templates'],
+        'APP_DIRS': True, # 다른 앱에 존재하는 templates에 접근할 수 있도록 True로 설정한다
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',

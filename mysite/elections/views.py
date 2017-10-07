@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound, Http404
 from django.db.models import Sum
 from .models import Candidate, Poll, Choice
 
@@ -15,6 +15,15 @@ def index(request):
     # context로 html에 모든 후보에 대한 정보를 전달
     return render(request, 'elections/index.html', context)
 
+def candidates(request, name):
+    candidate = get_object_or_404(Candidate, name=name)
+    # try:
+    #     candidate = Candidate.object.get(name=name)
+    # except:
+    #     # return HttpResponseNotFound("없는 페이지 입니다.")
+    #     raise Http404
+    return HttpResponse(candidate.name)
+
 def areas(request, area):
     # 현재 시간
     today = datetime.datetime.now()
@@ -24,10 +33,8 @@ def areas(request, area):
     try:
         # get에 인자로 조건을 전달
         poll = Poll.objects.get(area=area, start_date__lte=today, end_date__gte=today)
-        print("############", poll)
         # Candidate의 area(앞)와 매개변수 area(뒤)가 같은 객체만 불러오기
         candidates = Candidate.objects.filter(area=area)
-        print("############", candidates)
     except:
         poll = None
         candidates = None
